@@ -1,0 +1,22 @@
+# GET http://localhost:3000/apod
+
+POST http://localhost:3000/fetchImage
+
+Content-Type: application/json
+
+{
+	"roverName": "curiosity"
+}
+
+# roverName:"curiosity"
+# roverName:"opportunity",
+# roverName:"spirit",
+
+
+# GET https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=TclOITBSuctcELL5bJwVIjtcHWJ7WFPSpTKywmLg
+
+
+# GET https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=1000&api_key=TclOITBSuctcELL5bJwVIjtcHWJ7WFPSpTKywmLg
+
+
+# GET https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=1000&api_key=TclOITBSuctcELL5bJwVIjtcHWJ7WFPSpTKywmLg
