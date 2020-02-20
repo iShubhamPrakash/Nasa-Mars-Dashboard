@@ -41,9 +41,8 @@ const fetchData= async (store,currentTab)=>{
 }
 // listening for load event because page should load before any JS is called
 window.addEventListener('load', async () => {
-    console.log("Window loaded-");
     init(tabs,store);
-    await fetchData(store,store.currentTab);
+    await fetchData(store,"spirit");
     render(root, store);
 })
 
@@ -81,19 +80,19 @@ const renderInfo = (info) => {
         <div class="info">
             <strong>About</strong>
             <p>${info.about}</p>
-
+            <br/>
             <strong>Launch Date</strong>
             <p>${info.launchDate}</p>
-
+            <br/>
             <strong>Landing Date</strong>
             <p>${info.landingDate}</p>
-
+            <br/>
             <strong>Max Speed</strong>
             <p>${info.maxSpeed}</p>
-
+            <br/>
             <strong>Cost</strong>
             <p>${info.cost}</p>
-
+            <br/>
             <strong>Distance covered</strong>
             <p>${info.distanceCovered}</p>
         </div>
@@ -102,14 +101,18 @@ const renderInfo = (info) => {
 
 // A pure function that renders images requested from the backend
 const renderImages = (images) => {
-    return images.map(image => {
-        return (`
-            <div class="image-card">
-                <img src="${image.img_src}" />
-
-            </div>
-        `)
+    let imageHTML=``;
+    images.map(image => {
+        imageHTML+=`
+                    <figure class="image-card">
+                        <img src="${image.img_src}" alt="Rover image" class="rover-image"/>
+                        <figcaption>
+                            <span><b>Sol (Mars days):</b> ${image.sol}</span><br/>
+                            <span><b>Earth date:</b> ${image.earth_date}</span>
+                        </figcaption>
+                    </figure>`
     })
+    return imageHTML;
 }
 
 // ------------------------------------------------------  API CALLS

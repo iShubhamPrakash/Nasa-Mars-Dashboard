@@ -37,6 +37,7 @@ header {
   width: 100%;
   font-weight: bold;
   font-size: 0.8em;
+  background: rgb(241, 190, 207);
 }
 
 .tab.active {
@@ -56,7 +57,7 @@ header {
 main {
   max-width: 1200px;
   margin: auto;
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .info-container {
@@ -64,17 +65,23 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding: 2em 1em;
 }
 
 .info-container figure {
-  width: 40%;
+  width: 100%;
+  max-width: 400px;
   text-align: center;
-  background: red;
+  margin: auto;
 }
 
 .info {
-  width: 60%;
-  background: yellow;
+  padding: 1em;
+}
+
+strong {
+font-size: 1.5em;
+color: rgb(102, 31, 6);
 }
 
 .image-container{
@@ -82,10 +89,6 @@ main {
   flex-wrap: wrap;
 }
 
-.image-container figure{
-  width: 50%;
-  background: yellow;
-}
 
 .main-rover-img{
   width: 100%;
@@ -94,10 +97,15 @@ main {
 }
 
 .image-card{
-  width: 200px;
+  width: 100%;
+  max-width: 500px;
+  padding: 1em;
+  border-radius: 6px;
+  background: rgb(246, 201, 201);
+  margin: 1em auto;
 }
 
-.image-card img{
+.rover-image {
   width: 100%;
   height: auto;
 }
@@ -107,6 +115,10 @@ main {
   /* use mobile */
   .tab{
     font-size: 1.2em;
+  }
+
+  .info-container {
+    flex-wrap: nowrap;
   }
 
 }
