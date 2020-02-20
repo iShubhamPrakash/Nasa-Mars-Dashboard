@@ -110,7 +110,7 @@ color: rgb(102, 31, 6);
   height: auto;
 }
 
-/* -------------------  TABLET  --------------------- */
+/* -------------------  TABLET and Desktop --------------------- */
 @media (min-width: 768px) {
   /* use mobile */
   .tab{
@@ -121,16 +121,4 @@ color: rgb(102, 31, 6);
     flex-wrap: nowrap;
   }
 
-}
-
-/* -------------------  DESKTOP  -------------------- */
-
-@media (min-width: 1224px) {
-  /* use mobile */
-}
-
-/* -------------------  LARGE SCREENS  -------------- */
-
-@media (min-width: 1824px) {
-  /* use mobile */
 }

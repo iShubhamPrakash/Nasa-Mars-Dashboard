@@ -49,7 +49,6 @@ app.use('/', express.static(path.join(__dirname, '../public')))
 // Send information about the rover
 app.post('/roverInfo', async (req, res) => {
     try {
-        console.log("Call for ", req.body.roverName);
         res.send(roverData[req.body.roverName]);
 
     } catch (err) {
@@ -60,7 +59,6 @@ app.post('/roverInfo', async (req, res) => {
 // Fetching images from NASA Apis
 app.post('/fetchImage', async (req, res) => {
     try {
-        console.log("Call for ", req.body.roverName);
         const URL=`https://api.nasa.gov/mars-photos/api/v1/rovers/${req.body.roverName}/photos?sol=1000&api_key=${process.env.API_KEY}`
         let data = await fetch(URL)
             .then(res => res.json())

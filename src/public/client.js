@@ -1,5 +1,5 @@
 let store = {
-    currentTab: 'spirit',
+    currentTab: 'curiosity',
     roverInfo: {},
     roverImages: [],
 }
@@ -9,27 +9,33 @@ const root = document.getElementById('root');
 const tabs= document.querySelectorAll('.tab');
 
 const updateStore = (store, newState) => {
-    console.log("Updating the store-",newState);
     store = Object.assign(store, newState)
     render(root, store)
 }
 
 const render = async (root, state) => {
-    root.innerHTML = App(state)
+    root.innerHTML = App(state, renderInfo, renderImages)
 }
 
 
-// create content
-const App = (state) => {
-    let { roverInfo, roverImages } = state
+// App() is a higher order function-
+const App = (state, renderInfo, renderImages) => {
+    const { roverInfo, roverImages } = state
 
+    return generateHTML(roverInfo, roverImages, renderInfo, renderImages);
+}
+
+// generateHTML() is a higher order function-
+const generateHTML = (roverInfo, roverImages,generateInfo,generateImage) => {
+    const infoHTML= generateInfo(roverInfo);
+    const imageHTML= generateImage(roverImages);
     return `
         <div>
             <div class="info-container">
-                ${renderInfo(roverInfo)}
+                ${infoHTML}
             </div>
             <section class="image-container">
-                ${renderImages(roverImages)}
+                ${imageHTML}
             </section>
         </div>
     `
@@ -39,10 +45,11 @@ const fetchData= async (store,currentTab)=>{
     await getRoverData(store,currentTab);
     await getRoverImages(store,currentTab);
 }
+
 // listening for load event because page should load before any JS is called
 window.addEventListener('load', async () => {
     init(tabs,store);
-    await fetchData(store,"spirit");
+    await fetchData(store,"curiosity");
     render(root, store);
 })
 
@@ -102,6 +109,8 @@ const renderInfo = (info) => {
 // A pure function that renders images requested from the backend
 const renderImages = (images) => {
     let imageHTML=``;
+
+    // here map() is also a higher order function
     images.map(image => {
         imageHTML+=`
                     <figure class="image-card">
@@ -118,7 +127,6 @@ const renderImages = (images) => {
 // ------------------------------------------------------  API CALLS
 
 const getRoverData = (store,roverName) => {
-    console.log("Fetching rover data-");
     fetch(`http://localhost:3000/roverInfo`,{
         method: 'POST',
         headers: {
@@ -131,7 +139,6 @@ const getRoverData = (store,roverName) => {
 }
 
 const getRoverImages = (store,roverName) => {
-    console.log("Fetching rover images-");
     fetch(`http://localhost:3000/fetchImage`,{
         method: 'POST',
         headers: {
