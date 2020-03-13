@@ -111,7 +111,7 @@ const renderImages = (images) => {
     let imageHTML=``;
 
     // here map() is also a higher order function
-    images.map(image => {
+    images.slice(0,6).map(image => {
         imageHTML+=`
                     <figure class="image-card">
                         <img src="${image.img_src}" alt="Rover image" class="rover-image"/>
